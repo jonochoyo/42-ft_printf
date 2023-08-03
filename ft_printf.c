@@ -6,21 +6,25 @@
 /*   By: jchoy-me <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 15:41:44 by jchoy-me          #+#    #+#             */
-/*   Updated: 2023/08/02 16:46:21 by jchoy-me         ###   ########.fr       */
+/*   Updated: 2023/08/03 17:50:56 by jchoy-me         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include <unistd.h>
+#include <stdarg.h>
 
 /* 
-Trying printf with one string placeholder. 
-Will need to have a function to check what type of argument we have. 
+Trying printf with variadic function and only string and char arguments. 
+Added a helper function to check what type of placeholder argument we have. 
 When we encounter a placeholder '%' will need to check what type of argument
 it is and print accordingly. 
+
+Tried ints with putnbr but may need to check on that as we need to return 
+the total characters printed. 
 */
 
-int ft_printf(const char *format, char *str);
+int	ft_printf(const char *format, ...);
 
 void	ft_putchar_fd(char c, int fd)
 {
@@ -44,19 +48,51 @@ void	ft_putstr_fd(char *s, int fd)
 	write(fd, s, ft_strlen(s));
 }
 
-int ft_printf(const char *format, char *str)
+void	ft_putnbr_fd(int n, int fd)
 {
-	int	i;
+	unsigned int	nb;
+
+	nb = n;
+	if (n < 0)
+	{
+		ft_putchar_fd('-', fd);
+		nb = n * (-1);
+	}
+	if (nb > 9)
+		ft_putnbr_fd(nb / 10, fd);
+	ft_putchar_fd((nb % 10) + '0', fd);
+}
+
+void	ft_choose_print(char c, va_list args)
+{
+	if (c == 's')
+	{
+		ft_putstr_fd(va_arg(args, char *), 1);
+	}
+	else if (c == 'c')
+	{
+		ft_putchar_fd(va_arg(args, int), 1);
+	}
+	else if (c == 'i')
+	{
+		ft_putnbr_fd(va_arg(args, int), 1);
+	}
+}
+
+int	ft_printf(const char *format, ...)
+{
+	int		i;
+	va_list	args;
 
 	i = 0;
+	va_start(args, format);
 	while (format[i] != '\0')
 	{
 		if (format[i] == '%')
 		{
 			i++;
 			// Print placeholder
-			// ft_putchar_fd(c, 1);
-			ft_putstr_fd(str, 1);
+			ft_choose_print(format[i], args);
 		}
 		else
 		{
@@ -64,11 +100,13 @@ int ft_printf(const char *format, char *str)
 		}
 		i++;
 	}
+	va_end(args);
 	return (0);
 }
 
-int	main(void)
-{
-	printf("Hello World %s\n", "42");
-	ft_printf("Hello World %s\n", "42");
-}
+// int	main(void)
+// {
+// 	int x = printf("HelloWorld%s,%i\n", "42", 453);
+// 	printf("%i\n", x);
+// 	ft_printf("Hello World %s %c %s %c %i\n", "42", 'a', "again", 'x', 453);
+// }
