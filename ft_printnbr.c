@@ -1,18 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
+/*   ft_printnbr.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jchoy-me <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/11 14:30:52 by jchoy-me          #+#    #+#             */
-/*   Updated: 2023/08/04 12:25:07 by jchoy-me         ###   ########.fr       */
+/*   Created: 2023/07/11 14:31:34 by jchoy-me          #+#    #+#             */
+/*   Updated: 2023/08/04 15:23:13 by jchoy-me         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	ft_putchar_fd(char c, int fd)
+void	ft_printnbr(int n)
 {
-	write(fd, &c, 1);
+	unsigned int	nb;
+
+	nb = n;
+	if (n < 0)
+	{
+		ft_printchar('-');
+		nb = n * (-1);
+	}
+	if (nb > 9)
+	{
+		ft_printnbr(nb / 10);
+	}
+	ft_printchar((nb % 10) + '0');
 }

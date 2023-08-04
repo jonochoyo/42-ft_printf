@@ -1,31 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_get_size.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jchoy-me <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/04 12:18:46 by jchoy-me          #+#    #+#             */
-/*   Updated: 2023/08/04 17:05:43 by jchoy-me         ###   ########.fr       */
+/*   Created: 2023/08/04 15:22:43 by jchoy-me          #+#    #+#             */
+/*   Updated: 2023/08/04 15:50:09 by jchoy-me         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#include "ft_printf.h"
 
-# include <unistd.h>
-# include <stdarg.h>
+long	ft_get_size(long nb)
+{
+	long	len;
 
-// TESTING
-# include <stdio.h>
-
-int		ft_printchar(char c);
-int		ft_printstr(char *s);
-void	ft_printnbr(int n);
-void	ft_printunbr(unsigned int n);
-void	ft_printlhex(unsigned int n);
-size_t	ft_strlen(const char *s);
-long	ft_get_size(long nb);
-int		ft_printf(const char *format, ...);
-
-#endif
+	len = 0;
+	if (nb <= 0)
+		len++;
+	while (nb != 0)
+	{
+		nb = nb / 10;
+		len++;
+	}
+	return (len);
+}
