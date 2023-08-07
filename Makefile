@@ -6,7 +6,7 @@
 #    By: jchoy-me <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/04 12:24:47 by jchoy-me          #+#    #+#              #
-#    Updated: 2023/08/04 17:07:23 by jchoy-me         ###   ########.fr        #
+#    Updated: 2023/08/07 18:17:58 by jchoy-me         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,8 +20,12 @@ SRCS = ft_printf.c \
 		ft_printnbr.c \
 		ft_printunbr.c \
 		ft_printlhex.c \
+		ft_strtoupper.c \
+		ft_printptr.c \
+		ft_printpercent.c \
 		ft_strlen.c \
-		ft_get_size.c
+		ft_putstr.c \
+		ft_putchar.c
 
 OBJS = $(SRCS:%.c=%.o)
 

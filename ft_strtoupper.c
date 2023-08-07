@@ -1,25 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printstr.c                                      :+:      :+:    :+:   */
+/*   ft_strtoupper.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jchoy-me <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/11 14:31:09 by jchoy-me          #+#    #+#             */
-/*   Updated: 2023/08/07 17:49:54 by jchoy-me         ###   ########.fr       */
+/*   Created: 2023/08/07 17:02:13 by jchoy-me          #+#    #+#             */
+/*   Updated: 2023/08/07 17:50:26 by jchoy-me         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
 /*
-This function formats the string as "(null)" in the case we get a NULL arg.
-Otherwise, it returns the string without modification.
+This function turns a string to Upper case. 
 */
 
-char	*ft_printstr(char *s)
+char	*ft_strtoupper(char *s)
 {
-	if (s == NULL)
-		s = "(null)";
+	int	i;
+	
+	i = 0;
+	while (s[i] != '\0')
+	{
+		if ('a' <= s[i] && s[i] <= 'z')
+			s[i] = (s[i] - 32);
+		i++;
+	}
 	return (s);
 }
