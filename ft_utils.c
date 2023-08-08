@@ -1,25 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printstr.c                                      :+:      :+:    :+:   */
+/*   ft_utils.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jchoy-me <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/11 14:31:09 by jchoy-me          #+#    #+#             */
-/*   Updated: 2023/08/07 17:49:54 by jchoy-me         ###   ########.fr       */
+/*   Created: 2023/07/11 14:25:16 by jchoy-me          #+#    #+#             */
+/*   Updated: 2023/08/08 17:46:36 by jchoy-me         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
 /*
-This function formats the string as "(null)" in the case we get a NULL arg.
-Otherwise, it returns the string without modification.
+Helper functions
 */
 
-char	*ft_printstr(char *s)
+void	ft_putchar(char c)
 {
-	if (s == NULL)
-		s = "(null)";
-	return (s);
+	write(1, &c, 1);
+}
+
+void	ft_putstr(char *s)
+{
+	write(1, s, ft_strlen(s));
+}
+
+size_t	ft_strlen(const char *s)
+{
+	size_t	len;
+
+	len = 0;
+	while (s[len] != '\0')
+	{
+		len++;
+	}
+	return (len);
 }

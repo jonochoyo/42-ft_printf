@@ -1,18 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putchar.c                                       :+:      :+:    :+:   */
+/*   ft_print_c.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jchoy-me <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/07 16:45:32 by jchoy-me          #+#    #+#             */
-/*   Updated: 2023/08/07 16:46:05 by jchoy-me         ###   ########.fr       */
+/*   Created: 2023/07/11 14:30:52 by jchoy-me          #+#    #+#             */
+/*   Updated: 2023/08/08 17:36:43 by jchoy-me         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	ft_putchar(char c)
+/*
+Print the char and return 1 for count. 
+*/
+
+int	ft_print_c(char c)
 {
 	write(1, &c, 1);
+	return (1);
 }

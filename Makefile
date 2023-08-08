@@ -6,7 +6,7 @@
 #    By: jchoy-me <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/04 12:24:47 by jchoy-me          #+#    #+#              #
-#    Updated: 2023/08/07 18:17:58 by jchoy-me         ###   ########.fr        #
+#    Updated: 2023/08/08 17:44:46 by jchoy-me         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,17 +15,15 @@ CC = cc
 CFLAGS = -Wall -Wextra -Werror
 
 SRCS = ft_printf.c \
-		ft_printchar.c \
-		ft_printstr.c \
-		ft_printnbr.c \
-		ft_printunbr.c \
-		ft_printlhex.c \
-		ft_strtoupper.c \
-		ft_printptr.c \
-		ft_printpercent.c \
-		ft_strlen.c \
-		ft_putstr.c \
-		ft_putchar.c
+		ft_print_c.c \
+		ft_print_s.c \
+		ft_print_di.c \
+		ft_print_u.c \
+		ft_print_x.c \
+		ft_print_upperx.c \
+		ft_print_p.c \
+		ft_print_percent.c \
+		ft_utils.c
 
 OBJS = $(SRCS:%.c=%.o)
 
@@ -35,7 +33,7 @@ all: $(NAME)
 	$(CC) $(CFLAGS) -o $@ -c $<
 
 $(NAME): $(OBJS)
-			ar -rcs $(NAME) $(OBJS)
+		ar -rcs $(NAME) $(OBJS)
 
 clean:
 		rm -f $(OBJS)

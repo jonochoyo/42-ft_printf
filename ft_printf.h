@@ -6,7 +6,7 @@
 /*   By: jchoy-me <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 12:18:46 by jchoy-me          #+#    #+#             */
-/*   Updated: 2023/08/07 17:30:01 by jchoy-me         ###   ########.fr       */
+/*   Updated: 2023/08/08 17:34:27 by jchoy-me         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,14 @@
 // TESTING
 # include <stdio.h>
 
-char	*ft_printchar(char c);
-char	*ft_printstr(char *s);
-char	*ft_printnbr(int n);
-char	*ft_printunbr(unsigned int n);
-char	*ft_printlhex(unsigned int n);
-char	*ft_strtoupper(char *s);
-char	*ft_printptr(long long ptr);
-char	*ft_printpercent(void);
+int		ft_print_c(char c);
+int		ft_print_s(char *s);
+int		ft_print_di(int n);
+int		ft_print_u(unsigned int n);
+int		ft_print_x(unsigned int n);
+int		ft_print_upperx(unsigned int n);
+int		ft_print_p(size_t ptr);
+int		ft_print_percent(void);
 size_t	ft_strlen(const char *s);
 void	ft_putstr(char *s);
 void	ft_putchar(char c);

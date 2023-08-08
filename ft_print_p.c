@@ -1,22 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printnbr.c                                      :+:      :+:    :+:   */
+/*   ft_print_p.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jchoy-me <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/07 15:46:37 by jchoy-me          #+#    #+#             */
-/*   Updated: 2023/08/07 17:44:35 by jchoy-me         ###   ########.fr       */
+/*   Created: 2023/08/07 17:19:29 by jchoy-me          #+#    #+#             */
+/*   Updated: 2023/08/08 17:33:59 by jchoy-me         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
 /*
-Used itoa like function to get an int and turn it into a string for printing.
+ft_get_size for pointers takes into account the "0x" when returning the len. 
 */
 
-static int	ft_get_size(int nb)
+static int	ft_get_size(size_t nb)
 {
 	int	len;
 
@@ -25,36 +25,34 @@ static int	ft_get_size(int nb)
 		len++;
 	while (nb != 0)
 	{
-		nb = nb / 10;
+		nb = nb / 16;
 		len++;
 	}
-	return (len);
+	return (len + 2);
 }
 
-char	*ft_printnbr(int n)
+int	ft_print_p(size_t ptr)
 {
-	char			*str;
-	int				size;
-	unsigned int	nbr;
+	char	*str;
+	int		size;
 
-	size = ft_get_size(n);
+	size = ft_get_size(ptr);
 	str = (char *) malloc(sizeof(char) * (size + 1));
 	if (str == NULL)
-		return (NULL);
-	nbr = n;
-	if (n < 0)
-	{
-		str[0] = '-';
-		nbr = n * (-1);
-	}
-	if (nbr == 0)
-		str[0] = '0';
+		return (0);
+	if (ptr == 0)
+		str[2] = '0';
+	str[0] = '0';
+	str[1] = 'x';
 	str[size] = '\0';
-	while (nbr != 0)
+	while (ptr != 0)
 	{
 		size--;
-		str[size] = (nbr % 10) + '0';
-		nbr = nbr / 10;
+		str[size] = "0123456789abcdef"[ptr % 16];
+		ptr = ptr / 16;
 	}
-	return (str);
+	ft_putstr(str);
+	size = (ft_strlen(str));
+	free(str);
+	return (size);
 }

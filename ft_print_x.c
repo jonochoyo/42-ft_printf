@@ -1,22 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printptr.c                                      :+:      :+:    :+:   */
+/*   ft_print_x.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jchoy-me <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/07 17:19:29 by jchoy-me          #+#    #+#             */
-/*   Updated: 2023/08/07 17:34:22 by jchoy-me         ###   ########.fr       */
+/*   Created: 2023/08/04 16:59:21 by jchoy-me          #+#    #+#             */
+/*   Updated: 2023/08/08 17:39:34 by jchoy-me         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
 /*
-ft_get_size for pointers takes into account the "0x" when returning the len. 
+Used itoa like function to get an unsigned int and format it like a hexadecimal
+string in lowercase. 
+Prints the string and return its length. 
 */
 
-static int	ft_get_size(long long nb)
+static int	ft_get_size(unsigned int nb)
 {
 	int	len;
 
@@ -28,28 +30,29 @@ static int	ft_get_size(long long nb)
 		nb = nb / 16;
 		len++;
 	}
-	return (len + 2);
+	return (len);
 }
 
-char	*ft_printptr(long long ptr)
+int	ft_print_x(unsigned int n)
 {
 	char	*str;
 	int		size;
 
-	size = ft_get_size(ptr);
+	size = ft_get_size(n);
 	str = (char *) malloc(sizeof(char) * (size + 1));
 	if (str == NULL)
-		return (NULL);
-	if (ptr == 0)
-		str[2] = '0';
-	str[0] = '0';
-	str[1] = 'x';
+		return (0);
+	if (n == 0)
+		str[0] = '0';
 	str[size] = '\0';
-	while (ptr != 0)
+	while (n != 0)
 	{
 		size--;
-		str[size] = "0123456789abcdef"[ptr % 16];
-		ptr = ptr / 16;
+		str[size] = "0123456789abcdef"[n % 16];
+		n = n / 16;
 	}
-	return (str);
+	ft_putstr(str);
+	size = (ft_strlen(str));
+	free(str);
+	return (size);
 }
