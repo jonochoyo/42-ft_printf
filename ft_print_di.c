@@ -6,14 +6,14 @@
 /*   By: jchoy-me <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 15:46:37 by jchoy-me          #+#    #+#             */
-/*   Updated: 2023/08/08 17:37:12 by jchoy-me         ###   ########.fr       */
+/*   Updated: 2023/08/09 16:37:54 by jchoy-me         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
 /*
-Used itoa like function to get an int and turn it into a string.
+Used itoa like function to convert an integer into a string.
 Prints the string and return its length. 
 */
 

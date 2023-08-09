@@ -6,7 +6,7 @@
 /*   By: jchoy-me <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 15:41:44 by jchoy-me          #+#    #+#             */
-/*   Updated: 2023/08/08 17:40:19 by jchoy-me         ###   ########.fr       */
+/*   Updated: 2023/08/09 17:45:08 by jchoy-me         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ function to display on stdout. It also counts how many chars it printed and
 return that to ft_printf to keep the count.
 */
 
-static int	ft_choose_print(char c, va_list *args)
+static int	ft_choose_print(int c, va_list *args)
 {
 	int		print_count;
 
@@ -31,10 +31,8 @@ static int	ft_choose_print(char c, va_list *args)
 		print_count = ft_print_di(va_arg(*args, int));
 	else if (c == 'u')
 		print_count = ft_print_u(va_arg(*args, unsigned int));
-	else if (c == 'x')
-		print_count = ft_print_x(va_arg(*args, unsigned int));
-	else if (c == 'X')
-		print_count = ft_print_upperx(va_arg(*args, unsigned int));
+	else if (c == 'x' || c == 'X')
+		print_count = ft_print_x(va_arg(*args, unsigned int), c);
 	else if (c == 'p')
 		print_count = ft_print_p(va_arg(*args, size_t));
 	else if (c == '%')
@@ -47,7 +45,7 @@ static int	ft_choose_print(char c, va_list *args)
 /*
 The ft_printf function iterates through the "format" string and prints each 
 character. When it finds a placeholder '%' it will move to the next
-character and use it for ft_choose_print with the args pointer. 
+character and use it for ft_choose_print with the current arg pointer. 
 */
 
 int	ft_printf(const char *format, ...)
@@ -68,11 +66,32 @@ int	ft_printf(const char *format, ...)
 		}
 		else
 		{
-			ft_putchar(format[i]);
-			print_len++;
+			print_len += ft_print_c(format[i]);
 		}
 		i++;
 	}
 	va_end(args);
 	return (print_len);
 }
+
+/*
+To test, we can create a test.c file and run it with the library:
+cc test.c -L. -lftprintf
+
+
+#include "ft_printf.h"
+#include <stdio.h>
+
+int	main(void)
+{
+	int	count;
+	int	libcount;
+
+	count = ft_printf("Hi\t %s %c %% %s %u %X %p\n", (char *) NULL, 'a',
+			"hey", -450, 4509, (char *) NULL);
+	libcount = printf("Hi\t %s %c %% %s %u %X %p\n", (char *) NULL, 'a',
+			"hey", -450, 4509, (char *) NULL);
+	printf("My print count is: %i\n", count);
+	printf("Library print count is: %i\n", libcount);
+}
+*/

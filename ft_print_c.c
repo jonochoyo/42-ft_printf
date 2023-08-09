@@ -5,15 +5,15 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: jchoy-me <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/11 14:30:52 by jchoy-me          #+#    #+#             */
-/*   Updated: 2023/08/08 17:36:43 by jchoy-me         ###   ########.fr       */
+/*   Created: 2023/08/03 14:30:52 by jchoy-me          #+#    #+#             */
+/*   Updated: 2023/08/09 16:43:50 by jchoy-me         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
 /*
-Print the char and return 1 for count. 
+Print the character argument and return 1 for count. 
 */
 
 int	ft_print_c(char c)

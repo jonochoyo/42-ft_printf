@@ -6,14 +6,14 @@
 /*   By: jchoy-me <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 16:34:07 by jchoy-me          #+#    #+#             */
-/*   Updated: 2023/08/08 17:35:49 by jchoy-me         ###   ########.fr       */
+/*   Updated: 2023/08/09 16:24:04 by jchoy-me         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
 /*
-Print '%' and return 1 as count. 
+Prints '%' and return 1 as count. 
 */
 
 int	ft_print_percent(void)
